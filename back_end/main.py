@@ -2,6 +2,6 @@
 
 # listening ?
 
-# call for OL processing ?
+# call for OL processing
 
 # reply to front_end
