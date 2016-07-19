@@ -1,10 +1,11 @@
 # this is for generating lambda application
-import ???
+import traceback
+import rethinkdb as r
 
 
 
 # first log-in
-def init(conn, event):
+def login(conn, event):
     # get the account and the input_pw
     usr_accounts = ???
     input_pw = ???
@@ -23,11 +24,10 @@ def init(conn, event):
         else:
             return "false password"
 
-
 # check log-in status (using fbid?)
 def check(conn, event):
     # get fbid
-    fbid = ... ???
+
     # check fbid    database?
 
     # return status
@@ -40,22 +40,18 @@ def exit_login(conn, event):
 
 
 # handler
-def handler(conn,event):  # conn??
-    fn = {'init':   init,
-          'check':  check
-          'exit':   exit_login}.get(event['op'], None)  #??
+def handler(conn,event):
+    fn = {'login':  login,
+          'check':  check,
+          'exit' :  exit_login}.get(event['op'], None)
 
     if fn!=None:
-
-       result = fn(conn, event)
-    # first log-in
-
-
-    # check log-in status
-
-    # exit log-in
-        return {'result': result}
+        try:
+            result = fn(conn, event)
+            return {'result': result}
+        except Exception:
+            return {'error': traceback.format_exc()}
     else:
         # bad option
-        return("bad option")   # ?
+        return {'error': 'bad opt'}
 
