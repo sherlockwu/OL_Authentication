@@ -3,17 +3,19 @@ function lambda_post(data, callback){
     var url = "192.168.0.1:8080";
 
     // post
+
     $.ajax({
         type: "POST",
-        url : url,
+        url: url,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data),
         dataType: "json",
         success: callback,
         failure: function(error){
-            $.("#submit").html("Error: " + error);
+            $("#submit").html("Error: " + error);
         }
     });
+
 
 
 }
@@ -26,20 +28,22 @@ function login(){
     msg_passwd = $("#passwd").val();
     // post the data
     alert("We are using your account: " + msg_account + " passwd: " + msg_passwd + "to log in.");
-    /*
+
     lambda_post(
         {"op" : "login", "account" : msg_account, "passwd" : msg_passwd},
         function(data){
+            alert("Successfully Log-in");
             $("#account").val("");
             $("#passwd").val("");
         }
     );
-    */
+
 }
 
 
 function main(){
     // log-in
+    //alert("Please Log-in first")
     $("#passwd").val("");
     $("#passwd").keypress(function(e){
         if (e.keyCode==13){
@@ -51,5 +55,6 @@ function main(){
 
 
 $(document).ready(function(){
-     main();
-})
+    alert("loading OK!");
+    main();
+});
