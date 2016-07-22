@@ -9,7 +9,7 @@ PW = 'password'        # column
 ID = 'fbid'            # column
 
 def cal_fbid(usr_object):
-    # cal fbid algorithm   ????
+    # cal fbid algorithm   TODO
     fbid = usr_object[AC] + usr_object[PW]
     return fbid
 
@@ -34,7 +34,7 @@ def login(conn, event):
         else:
             return {'error': 'wrong password'}
 
-# check log-in status (using fbid?)
+# check log-in status (using fbid?) TODO
 def check(conn, event):
     # get fbid
 
