@@ -1,6 +1,8 @@
+var config;
+
 function lambda_post(data, callback){
-    // url  ????
-    var url = "192.168.0.1:8080";
+    // url
+    var url = config['url'];
 
     // post
 
@@ -45,12 +47,25 @@ function main(){
     // log-in
     //alert("Please Log-in first")
     $("#passwd").val("");
-    $("#passwd").keypress(function(e){
-        if (e.keyCode==13){
-            $("#submit").click();
+    $.getJSON('config.son')
+        .done(function(data){
+            // get config
+            config = data;
+            // normal running
+            $("#passwd").keypress(function(e){
+                if (e.KeyCode == 13){
+                    $("#submit").click();
+                }
+            });
+            $("#submit").click(login)
         }
-    });
-    $("#submit").click(login);
+        ).fail(function(jqxhr, textStatus, error){
+            // direct refreshing
+            $("login_status").html("Error: " + error + ". Consider Refreshing.")
+
+        }
+        );
+
 }
 
 

@@ -6,7 +6,7 @@ NGINX_EXAMPLE = 'docker run -d -p 80:80 -v %s:/usr/share/nginx/html:ro nginx'
 
 def main():
     app_name = ''.join(random.choice(string.ascii_lowercase) for _ in range(12))
-    static_dir = os.path.join(SCRIPT_DIR, 'sdk')
+    static_dir = os.path.join(SCRIPT_DIR, 'static')
     root_dir = os.path.join(SCRIPT_DIR, '..', '..')
     cluster_dir = os.path.join(root_dir, 'util', 'cluster')
     builder_dir = os.path.join(root_dir, 'lambda-generator')
@@ -19,7 +19,7 @@ def main():
     builder = os.path.join(builder_dir, 'builder.py')
     run(builder + ' -n %s -l %s -c %s' %
         (app_name,
-         os.path.join(SCRIPT_DIR, 'lambda', 'lambda_function.py'),
+         os.path.join(SCRIPT_DIR, 'authentication.py'),
          os.path.join(SCRIPT_DIR, 'lambda-config.json')))
 
     # push image
