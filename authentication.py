@@ -16,33 +16,32 @@ def cal_fbid(usr_object):
 # first log-in
 
 
-#def login(conn, event):
-    # get the account and the input_pw
-#    usr_accounts = event['account']
-#    input_pw = event['passwd']
-    # check the accounts
-    # connect to the database? conn: RethinkDB
-    # filter out the guest through account (how to realize this)
-#    cursor = r.table(TB).filter({AC: usr_accounts}).run(conn)
-    #account not exist
-#    if cursor == None:
-#        return {'error': 'Non-exist Account'}
-
-#    for row in cursor:
-#        if (row[PW] == input_pw ):
-            # cal fbid
-#            fbid = cal_fbid(row)
-#            return {'result': fbid}
-#        else:
-#            return {'error': 'wrong password'}
-
 def login(conn, event):
-    # just for test
-    return {'result': 'successsful reached'}
+    # get the account and the input_pw
+    usr_accounts = event['account']
+    input_pw = event['passwd']
+    # check the accounts
+    # filter out the guest through account (how to realize this)
+    cursor = r.table(TB).filter({AC: usr_accounts}).run(conn)
+    #account not exist
+    if cursor == None:
+        return 'Non-exist Account'
 
-def add(conne, event):
-    # just for test
-    return {'result': 'successfully added'}
+    for row in cursor:
+        if (row[PW] == input_pw ):
+            # cal fbid
+            fbid = cal_fbid(row)
+            return fbid
+        else:
+            return 'wrong password'
+
+def add(conn, event):
+    # get the account
+    usr_accounts = event['account']
+    usr_pw = event['passwd']
+    # store into the rethinkdb
+    r.table(TB).insert({AC: usr_accounts, PW: usr_pw}).run(conn)
+    return 'sucessfully added!!!'
 # check log-in status (using fbid?) TODO
 def check(conn, event):
     # get fbid

@@ -33,7 +33,7 @@ function add(){
     lambda_post(
         {"op" : "add", "account" : msg_account, "passwd" : msg_passwd},
         function(data){
-            alert("Successfully added");
+            alert("added");
             $("#account").val("");
             $("#passwd").val("");
         }
