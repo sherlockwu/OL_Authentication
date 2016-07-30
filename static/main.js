@@ -29,7 +29,7 @@ function login(){
     msg_account = $("#account").val();
     msg_passwd = $("#passwd").val();
     // post the data
-    alert("We are using your account: " + msg_account + " passwd: " + msg_passwd + "to log in.");
+    alert("We are using your account: " + msg_account + " passwd: " + msg_passwd + " to log in.");
 
     lambda_post(
         {"op" : "login", "account" : msg_account, "passwd" : msg_passwd},
@@ -47,13 +47,14 @@ function main(){
     // log-in
     //alert("Please Log-in first")
     $("#passwd").val("");
-    $.getJSON('config.son')
+    $.getJSON('config.json')
         .done(function(data){
             // get config
+            alert("config loaded");
             config = data;
             // normal running
             $("#passwd").keypress(function(e){
-                if (e.KeyCode == 13){
+                if (e.keyCode == 13){
                     $("#submit").click();
                 }
             });
@@ -70,6 +71,5 @@ function main(){
 
 
 $(document).ready(function(){
-    alert("loading OK!");
     main();
 });

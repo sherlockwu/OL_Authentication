@@ -14,25 +14,31 @@ def cal_fbid(usr_object):
     return fbid
 
 # first log-in
-def login(conn, event):
+
+
+#def login(conn, event):
     # get the account and the input_pw
-    usr_accounts = event['account']
-    input_pw = event['passwd']
-# check the accounts
+#    usr_accounts = event['account']
+#    input_pw = event['passwd']
+    # check the accounts
     # connect to the database? conn: RethinkDB
     # filter out the guest through account (how to realize this)
-    cursor = r.table(TB).filter({AC: usr_accounts}).run(conn)
+#    cursor = r.table(TB).filter({AC: usr_accounts}).run(conn)
     #account not exist
-    if cursor == None:
-        return {'error': 'Non-exist Account'}
+#    if cursor == None:
+#        return {'error': 'Non-exist Account'}
 
-    for row in cursor:
-        if (row[PW] == input_pw ):
+#    for row in cursor:
+#        if (row[PW] == input_pw ):
             # cal fbid
-            fbid = cal_fbid(row)
-            return {'result': fbid}
-        else:
-            return {'error': 'wrong password'}
+#            fbid = cal_fbid(row)
+#            return {'result': fbid}
+#        else:
+#            return {'error': 'wrong password'}
+
+def login(conn, event):
+    # just for test
+    return {'result': 'successsful reached'}
 
 # check log-in status (using fbid?) TODO
 def check(conn, event):
