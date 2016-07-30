@@ -40,6 +40,9 @@ def login(conn, event):
     # just for test
     return {'result': 'successsful reached'}
 
+def add(conne, event):
+    # just for test
+    return {'result': 'successfully added'}
 # check log-in status (using fbid?) TODO
 def check(conn, event):
     # get fbid
@@ -58,6 +61,7 @@ def exit_login(conn, event):
 # handler
 def handler(conn,event):
     fn = {'login':  login,
+          'add'  :  add,
           'check':  check,
           'exit' :  exit_login}.get(event['op'], None)
 
