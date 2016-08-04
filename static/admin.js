@@ -33,7 +33,8 @@ function add(){
     lambda_post(
         {"op" : "add", "account" : msg_account, "passwd" : msg_passwd},
         function(data){
-            alert("added");
+            alert(JSON.stringify(data));
+            // alert("added");
             $("#account").val("");
             $("#passwd").val("");
         }

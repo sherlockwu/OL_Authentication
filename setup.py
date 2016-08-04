@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os, sys, random, string
+
 from common import *
 
 NGINX_EXAMPLE = 'docker run -d -p 80:80 -v %s:/usr/share/nginx/html:ro nginx'
@@ -37,11 +38,12 @@ def main():
            (balancer['host_ip'], balancer['host_port'], app_name))
     wrjs(config_file, {'url': url})
 
-    # directions TODO  change? database
+    # init database
+        # print
     print '='*40
-    print 'Consider serving the app with nginx as follows:'
-    print NGINX_EXAMPLE % static_dir
-    return None
+    print 'Initing Database'
+        # db_init
+    db_init(balancer['host_ip']) # TODO which IP?
 
 if __name__ == '__main__':
     rv = main()
