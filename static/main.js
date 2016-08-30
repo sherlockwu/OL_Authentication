@@ -34,7 +34,7 @@ function login(){
     lambda_post(
         {"op" : "login", "account" : msg_account, "passwd" : msg_passwd},
         function(data){
-            alert("Successfully Log-in");
+            alert(JSON.stringify(data));
             $("#account").val("");
             $("#passwd").val("");
         }

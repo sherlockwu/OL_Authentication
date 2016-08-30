@@ -3,7 +3,7 @@ import traceback
 import rethinkdb as r
 
 DB = 'authentication'  # authentication database
-TB = 'log_in'          # account table
+TB = 'user'            # account table
 AC = 'account'         # column
 PW = 'password'        # column
 ID = 'fbid'            # column
@@ -22,10 +22,10 @@ def login(conn, event):
     input_pw = event['passwd']
     # check the accounts
     # filter out the guest through account (how to realize this)
-    cursor = r.table(TB).filter({AC: usr_accounts}).run(conn)
+    cursor = r.db(DB).table(TB).filter({AC: usr_accounts}).run(conn)
     #account not exist
-    if cursor == None:
-        return 'Non-exist Account'
+    #if cursor == None:
+    #    return 'Non-exist Account'
 
     for row in cursor:
         if (row[PW] == input_pw ):
@@ -34,13 +34,13 @@ def login(conn, event):
             return fbid
         else:
             return 'wrong password'
-
+    return 'Non-exist Account'
 def add(conn, event):
     # get the account
     usr_accounts = event['account']
     usr_pw = event['passwd']
     # store into the rethinkdb
-    r.table(TB).insert({AC: usr_accounts, PW: usr_pw}).run(conn)
+    r.db(DB).table(TB).insert({AC: usr_accounts, PW: usr_pw}).run(conn)
     return 'sucessfully added!!!'
 # check log-in status (using fbid?) TODO
 def check(conn, event):
@@ -64,6 +64,7 @@ def handler(conn,event):
           'check':  check,
           'exit' :  exit_login}.get(event['op'], None)
 
+    print (fn)
     if fn!=None:
         try:
             result = fn(conn, event)
