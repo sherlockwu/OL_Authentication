@@ -1,0 +1,23 @@
+2016-09-01T10:58:25.600134738 0.106268s notice: Recursively removing directory /home/kevin/Desktop/git_OL/applications/authentication/rethinkdb_data/tmp
+2016-09-01T10:58:25.609606079 0.115742s notice: Initializing directory /home/kevin/Desktop/git_OL/applications/authentication/rethinkdb_data
+2016-09-01T10:58:25.609936355 0.116068s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/kevin/Desktop/git_OL/applications/authentication/rethinkdb_data' did not already exist or is empty.)
+2016-09-01T10:58:25.612984593 0.119118s notice: Running rethinkdb 2.3.4 (GCC 4.8.4)...
+2016-09-01T10:58:25.616166368 0.122300s notice: Running on Linux 4.2.0-41-generic x86_64
+2016-09-01T10:58:25.616282828 0.122414s notice: Loading data from directory /home/kevin/Desktop/git_OL/applications/authentication/rethinkdb_data
+2016-09-01T10:58:25.688549457 0.194683s info: Automatically using cache size of 100 MB
+2016-09-01T10:58:25.688873645 0.195005s warn: Cache size does not leave much memory for server and query overhead (available memory: 1115 MB).
+2016-09-01T10:58:25.688876966 0.195008s warn: Cache size is very low and may impact performance.
+2016-09-01T10:58:25.689327325 0.195459s notice: Listening for intracluster connections on port 29015
+2016-09-01T10:58:25.708278090 0.214410s notice: Listening for client driver connections on port 28015
+2016-09-01T10:58:25.709179486 0.215311s notice: Listening for administrative HTTP connections on port 8080
+2016-09-01T10:58:25.709182318 0.215314s notice: Listening on cluster addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-09-01T10:58:25.709185325 0.215317s notice: Listening on driver addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-09-01T10:58:25.709187076 0.215318s notice: Listening on http addresses: 127.0.0.1, 127.0.1.1, ::1
+2016-09-01T10:58:25.709189452 0.215321s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2016-09-01T10:58:25.709191581 0.215323s notice: Server ready, "kevin_VirtualBox_kq2" 97fe82fc-c867-4d26-b091-7b45c47acbbe
+2016-09-01T10:58:25.975851453 0.481983s notice: A newer version of the RethinkDB server is available: 2.3.5. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2016-09-01T10:58:31.585191700 6.091324s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2016-09-01T10:58:31.585249947 6.091381s notice: Shutting down client connections...
+2016-09-01T10:58:31.585479510 6.091611s notice: All client connections closed.
+2016-09-01T10:58:31.585481279 6.091613s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2016-09-01T10:58:31.596562837 6.102695s notice: Storage engine shut down.
