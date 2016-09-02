@@ -43,8 +43,17 @@ function login(){
             // store the fbid
                 fbid = data['fbid'];
                 alert(fbid);
+                // show log-in status
                 $("#login_status").html("Logged in as "+msg_account);
                 $("#log_out").attr("style", "display: block;");
+
+                // show get_habbit button
+                $("#get_habbit").attr("style", "display: block;");
+
+                // show gender
+                gender = data['gender'];
+                // TODO just show
+                $("#gender").html(gender);
             }
             $("#account").val("");
             $("#passwd").val("");
@@ -54,10 +63,10 @@ function login(){
 
 }
 
-function store_habit(){
+function get_habbit(){
+    // TODO send post
 
-    // TODO store the habit into logged account database
-    alert("The habit has been stored!");
+    // show the habbit
 
 }
 
@@ -113,6 +122,7 @@ function main(){
 
             // log-out
             $("#log_out").click(logout)
+            $("#get_habbit").click(get_habbit)
         }
         ).fail(function(jqxhr, textStatus, error){
             // direct refreshing

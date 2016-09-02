@@ -18,7 +18,8 @@ def cal_fbid(usr_object):
 
 
 def login(conn, event):
-    # get the account and the input_pw
+    # get the account and the input_pw and the habbits
+
     usr_accounts = event['account']
     input_pw = event['passwd']
     # check the accounts
@@ -27,22 +28,32 @@ def login(conn, event):
     #account not exist
 
     for row in cursor:
-        if (row[PW] == input_pw ):
+        if (row[PW] == input_pw):
             # cal fbid
             fbid = cal_fbid(row)
-            # TODO insert the fbid into database
+
+            # insert the fbid into database
             r.db(DB).table(TB).filter({AC: usr_accounts}).update({ID: fbid}).run(conn)
-            return {'status': 'login successfully', 'fbid': fbid}
+
+            # fetch the gender
+            gender = row['gender']
+            return {'status': 'login successfully', 'fbid': fbid, 'gender': gender}
         else:
             return {'status': 'wrong password'}
     return {'status': 'Non-exist Account'}
+
+# add an account from admin.html
 def add(conn, event):
     # get the account
     usr_accounts = event['account']
     usr_pw = event['passwd']
+    usr_gender = event['gender']
+    usr_habbit = event['habbit']
+
     # store into the rethinkdb
-    r.db(DB).table(TB).insert({AC: usr_accounts, PW: usr_pw}).run(conn)
+    r.db(DB).table(TB).insert({AC: usr_accounts, PW: usr_pw, 'gender': usr_gender, 'habbit': usr_habbit}).run(conn)
     return {'status': 'sucessfully added!'}
+
 # check log-in status (using fbid?) TODO
 def check(conn, event):
     # get fbid
@@ -78,6 +89,8 @@ def handler(conn,event):
           'add'  :  add,
           'check':  check,
           'logout' : logout}.get(event['op'], None)
+
+# TODO get habbits
 
 
     print (fn)
