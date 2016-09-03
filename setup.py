@@ -18,7 +18,7 @@ def db_init(dest_ip):
         state = 'created'
 
     r.db_create('authentication').run(conn)
-    r.db('authentication').table_create('user', primary_key = 'fbid').run(conn)
+    r.db('authentication').table_create('user', primary_key = 'account').run(conn)
 
     # new database (if created, delete)
 

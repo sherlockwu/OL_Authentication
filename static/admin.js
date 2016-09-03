@@ -26,25 +26,25 @@ function add(){
     // get the data
     var msg_account;
     var msg_passwd;
-    var msg_habbit;
+    var msg_habit;
     var msg_gender;
 
     msg_account = $("#account").val();
     msg_passwd = $("#passwd").val();
     msg_gender = $("#gender").val();
-    msg_habbit = $("#habbit").val();
+    msg_habit = $("#habit").val();
 
     // post the data
 
     lambda_post(
-        {"op" : "add", "account" : msg_account, "passwd" : msg_passwd, "gender": msg_gender, "habbit": msg_habbit},
+        {"op" : "add", "account" : msg_account, "passwd" : msg_passwd, "gender": msg_gender, "habit": msg_habit},
         function(data){
             alert(JSON.stringify(data));
             // alert("added");
             $("#account").val("");
             $("#passwd").val("");
             $("#gender").val("");
-            $("#habbit").val("");
+            $("#habit").val("");
         }
     );
 

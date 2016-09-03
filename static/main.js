@@ -47,8 +47,8 @@ function login(){
                 $("#login_status").html("Logged in as "+msg_account);
                 $("#log_out").attr("style", "display: block;");
 
-                // show get_habbit button
-                $("#get_habbit").attr("style", "display: block;");
+                // show get_habit button
+                $("#get_habit").attr("style", "display: block;");
 
                 // show gender
                 gender = data['gender'];
@@ -63,10 +63,20 @@ function login(){
 
 }
 
-function get_habbit(){
-    // TODO send post
+function get_habit(){
+    // send post
+    alert("fbid right now: " + fbid);
+    lambda_post(
+        {"op": "get_habit", "account": msg_account, "fbid": fbid},
+        function(data){
+            // show the habit
+            //habit = data['habit'];
+            habit = JSON.stringify(data);
 
-    // show the habbit
+            alert(habit);
+            $("#habit").html(habit);
+        }
+    );
 
 }
 
@@ -75,15 +85,19 @@ function logout(){
     lambda_post(
         {"op": "logout", "account" : msg_account, "fbid" : fbid},
         function(data){
-            alert("Successfully log-out");
+            message = JSON.stringify(data);
+            alert(message);
+            /* TODO logic wrong
             //change the log-in status
             $("#login_status").html("logged out");
 
             //reset the fbid
             fbid = "";
 
-            //hide the log-out button
+            //hide the log-out and get_habit button
             $("#log_out").attr("style", "display: none;");
+            $("#get_habit").attr("style", "display: none;");
+            */
         }
     );
 
@@ -108,6 +122,7 @@ function main(){
             $("#submit").click(login)
 
             // habit "enter"
+            /*
             $("#habit").keypress(function(e){
                 // TODO 1. check the login status 2. insert habits to the database then
                 if (e.keyCode == 13){
@@ -119,10 +134,10 @@ function main(){
                     }
                 }
             });
-
-            // log-out
+            */
+            // log-out & get habits
             $("#log_out").click(logout)
-            $("#get_habbit").click(get_habbit)
+            $("#get_habit").click(get_habit)
         }
         ).fail(function(jqxhr, textStatus, error){
             // direct refreshing
