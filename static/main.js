@@ -52,7 +52,7 @@ function login(){
 
                 // show gender
                 gender = data['gender'];
-                // TODO just show
+                // just show
                 $("#gender").html(gender);
             }
             $("#account").val("");
@@ -65,16 +65,12 @@ function login(){
 
 function get_habit(){
     // send post
-    alert("fbid right now: " + fbid);
     lambda_post(
         {"op": "get_habit", "account": msg_account, "fbid": fbid},
         function(data){
             // show the habit
-            //habit = data['habit'];
-            habit = JSON.stringify(data);
-
-            alert(habit);
-            $("#habit").html(habit);
+            alert(data['habit']);
+            $("#habit").html('habit: ' + data['habit']);
         }
     );
 
@@ -85,8 +81,24 @@ function logout(){
     lambda_post(
         {"op": "logout", "account" : msg_account, "fbid" : fbid},
         function(data){
-            message = JSON.stringify(data);
-            alert(message);
+
+            // log-out successfully
+            if (data['status'] == 'logout successfully'){
+
+                // change log-in status
+                $("#login_status").html("Log out");
+                //reset fbid
+                fbid = "";
+                //hide things
+                $("#log_out").attr("style", "display: none;");
+                $("#get_habit").attr("style", "display: none;");
+                // reset gender and habit
+                $("#habit").html("");
+                $("#gender").html("");
+            } else{
+            // log-out failed
+            alert(data['status']);
+            }
             /* TODO logic wrong
             //change the log-in status
             $("#login_status").html("logged out");
@@ -124,7 +136,7 @@ function main(){
             // habit "enter"
             /*
             $("#habit").keypress(function(e){
-                // TODO 1. check the login status 2. insert habits to the database then
+                //  1. check the login status 2. insert habits to the database then
                 if (e.keyCode == 13){
                     // check login status
                     if (fbid == "0"){
