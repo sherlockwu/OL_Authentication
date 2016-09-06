@@ -40,7 +40,15 @@ function login(){
             status = data['status'];
             alert(status);
             if (status == "login successfully"){
-            // store the fbid
+                // reset all info
+                    // status
+                    $("#login_status").html("");
+                    // gender
+                    $("#gender").html("");
+                    // habit
+                    $("#habit").html("");
+
+                // store the fbid
                 fbid = data['fbid'];
                 alert(fbid);
                 // show log-in status
@@ -52,8 +60,8 @@ function login(){
 
                 // show gender
                 gender = data['gender'];
-                // just show
                 $("#gender").html(gender);
+
             }
             $("#account").val("");
             $("#passwd").val("");
